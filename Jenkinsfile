@@ -44,7 +44,7 @@ spec:
       }
     }
 
-  /*  stage('Deploy E2E') {
+    stage('Deploy E2E') {
       environment {
         GIT_CREDS = credentials('git')
       }
@@ -61,7 +61,7 @@ spec:
       }
     }
 
-    stage('Deploy to Prod') {
+   /* stage('Deploy to Prod') {
       steps {
         input message:'Approve deployment?'
         container('tools') {

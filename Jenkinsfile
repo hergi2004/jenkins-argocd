@@ -50,7 +50,7 @@ spec:
       }
       steps {
         container('tools') {
-            sh "git clone https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/hergi2004/argocd-demo-deploy.git"
+       //     sh "git clone https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/hergi2004/argocd-demo-deploy.git"
       //    sh "git config --global user.email 'hergi2004@gmail.com'"
       //      sh "git clone https://github.com/hergi2004/argocd-demo-deploy.git"
             sh "git config --global user.email 'hergi2004@gmail.com'"
@@ -67,6 +67,7 @@ spec:
             # double-check with:
             git config -l --show-origin | grep -i proxy
             '''
+            sh "git clone https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/hergi2004/argocd-demo-deploy.git"
           dir("argocd-demo-deploy") {
             sh "cd ./e2e && kustomize edit set image hergi2004/argocd-demo:${env.GIT_COMMIT}"
             sh "git commit -am 'Publish new version' && git push || echo 'no changes'"

@@ -50,8 +50,8 @@ spec:
       }
       steps {
         container('tools') {
-          echo ${GIT_CREDS_PSW}
-          echo ${GIT_CREDS_USR}
+          echo "${GIT_CREDS_PSW}"
+          echo "${GIT_CREDS_USR}"
             sh "git clone https://GIT_CREDS_USR:GIT_CREDS_PSW@github.com/hergi2004/argocd-demo-deploy.git"
        //     sh "git config --global user.email 'hergi2004@gmail.com'"
       //      sh "git clone https://github.com/hergi2004/argocd-demo-deploy.git"

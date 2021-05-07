@@ -56,9 +56,6 @@ spec:
             sh "git config --global user.email 'hergi2004@gmail.com'"
             sh "git config --global user.name 'hergi2004'"
             sh '''
-            git config --unset http.proxy
-            git config --global --unset http.proxy
-            git config --system --unset http.proxy
 
             git config --unset https.proxy
             git config --global --unset https.proxy

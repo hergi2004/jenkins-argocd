@@ -16,7 +16,7 @@ pipeline {
       }
     }
   }
-}
+
 //     stage('Deploy E2E') {
 //       environment {
 //         GIT_CREDS = credentials('git')

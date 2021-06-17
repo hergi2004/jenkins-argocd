@@ -7,7 +7,6 @@ pipeline {
         DOCKERHUB_CREDS = credentials('dockerhub')
       }
       steps {
-        {
           // Build new image
           sh "until docker ps; do sleep 3; done && docker build -t hergi2004/argocd-demo:${env.GIT_COMMIT} ."
           // Publish new image

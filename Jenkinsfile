@@ -10,7 +10,7 @@ pipeline {
           // Build new image
           sh "until docker ps; do sleep 3; done && docker build -t hergi2004/argocd-demo:${env.GIT_COMMIT} ."
           // Publish new image
-          sh "docker login --username $DOCKERHUB_CREDS_USR --password-stdin $DOCKERHUB_CREDS_PSW && docker push hergi2004/argocd-demo:${env.GIT_COMMIT}"
+        sh "docker login --username ${DOCKERHUB_CREDS_USR} --password-stdin ${DOCKERHUB_CREDS_PSW} && docker push hergi2004/argocd-demo:${env.GIT_COMMIT}"
       
         }
       }

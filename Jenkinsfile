@@ -2,19 +2,33 @@ pipeline {
   agent any
   stages {
 
-    stage('Build') {
-      environment {
-        DOCKERHUB_CREDS = credentials('dockerhub')
-      }
-      steps {
-          // Build new image
-          sh "until docker ps; do sleep 3; done && docker build -t hergi2004/argocd-demo:${env.GIT_COMMIT} ."
-          // Publish new image
-        sh "docker login --u ${DOCKERHUB_CREDS_USR} --p ${DOCKERHUB_CREDS_PSW} && docker push hergi2004/argocd-demo:${env.GIT_COMMIT}"
+//     stage('Build') {
+//       environment {
+//         DOCKERHUB_CREDS = credentials('dockerhub')
+//       }
+//       steps {
+//           // Build new image
+//           sh "until docker ps; do sleep 3; done && docker build -t hergi2004/argocd-demo:${env.GIT_COMMIT} ."
+//           // Publish new image
+//         sh "docker login --u ${DOCKERHUB_CREDS_USR} --p ${DOCKERHUB_CREDS_PSW} && docker push hergi2004/argocd-demo:${env.GIT_COMMIT}"
       
-        }
-      }
+//         }
+//       }
 
+        stage('Push Docker Image to Docker Registry') {
+        container('docker'){
+            withCredentials([[$class: 'UsernamePasswordMultiBinding',
+            credentialsId: env.dockerhub,
+            usernameVariable: 'USERNAME',
+            passwordVariable: 'PASSWORD']]) {
+                docker.withRegistry(env.DOCEKR_REGISTRY, env.DOCKER_CREDENTIALS_ID) {
+                    sh("docker push ${app1_image_tag}")
+                    sh("docker push ${app2_image_tag}")
+                }
+            }
+        }
+        }
+    
     stage('Deploy E2E') {
       environment {
         GIT_CREDS = credentials('git')

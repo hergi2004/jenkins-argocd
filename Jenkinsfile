@@ -16,6 +16,7 @@ pipeline {
 //       }
 
         stage('Push Docker Image to Docker Registry') {
+          steps {
         container('docker'){
             withCredentials([[$class: 'UsernamePasswordMultiBinding',
             credentialsId: env.dockerhub,
@@ -26,6 +27,7 @@ pipeline {
                     sh("docker push ${app2_image_tag}")
                 }
             }
+        }
         }
         }
     

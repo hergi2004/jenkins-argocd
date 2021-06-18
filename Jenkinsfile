@@ -1,5 +1,5 @@
-pipeline {
-  agent any
+// pipeline {
+//   agent any
 //   stages {
 
 //     stage('Build') {
@@ -14,7 +14,14 @@ pipeline {
       
 //         }
 //       }
-
+agent {
+    node {
+        label 'node1'
+        customWorkspace '/some/other/path'
+        -------
+        -------
+    }
+}
         stage('Push Docker Image to Docker Registry') {
         container('docker'){
             withCredentials([[$class: 'UsernamePasswordMultiBinding',
@@ -63,4 +70,4 @@ pipeline {
 //       }
 //     }
 //   }
-}
+// }

@@ -18,8 +18,7 @@ agent {
     node {
         label 'node1'
         customWorkspace '/some/other/path'
-        -------
-        -------
+
     }
 }
         stage('Push Docker Image to Docker Registry') {

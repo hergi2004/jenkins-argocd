@@ -49,7 +49,7 @@ pipeline {
 //               git config --global credential.username {GIT_USERNAME}
 
            dir("nginx") {
-//            sh "ls -nginx ./*" 
+           sh "ls nginx" 
             sh "cd ./templates && sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
 //              sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
             sh "git commit -am 'Publish new version' && git push || echo 'no changes'"

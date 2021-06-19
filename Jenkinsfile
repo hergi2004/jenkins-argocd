@@ -74,7 +74,8 @@ pipeline {
                 sh "ls -lart ./*"
             }
         }   
-    }       
+    }
+    }
 }
 }
 //     stage('Deploy to Prod') {

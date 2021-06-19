@@ -47,7 +47,6 @@ pipeline {
 //            git config --global user.email 'hergi2004@gmail.com'
 //            git config --global user.name 'hergi2004'
               git config --global credential.username {GIT_USERNAME}
-              git config --global credential.helper "!echo password={GIT_PASSWORD}; echo"
 
            git clone https://github.com/hergi2004/nginx.git
            dir("nginx") {

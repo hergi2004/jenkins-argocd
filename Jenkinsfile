@@ -42,13 +42,12 @@ pipeline {
 //                 sh "ls -lart ./*"
          script {
            // The below will clone your repo and will be checked out to master branch by default.
-//            git credentialsId: 'git', url: 'https://github.com/hergi2004/nginx.git'
+           git credentialsId: 'git', url: 'https://github.com/hergi2004/nginx.git'
 //           git config --global http.sslVerify false
 //            git config --global user.email 'hergi2004@gmail.com'
 //            git config --global user.name 'hergi2004'
-              git config --global credential.username {GIT_USERNAME}
+//               git config --global credential.username {GIT_USERNAME}
 
-           git clone https://${GIT_CREDS_USR}:${GIT_CREDS_PSW}@github.com/${GIT_CREDS_USR}/nginx.git
            dir("nginx") {
 //            sh "ls -nginx ./*" 
             sh "cd ./templates && sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"

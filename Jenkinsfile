@@ -48,9 +48,9 @@ pipeline {
 //            git config --global user.name 'hergi2004'
 //               git config --global credential.username {GIT_USERNAME}
 
-           dir("nginx") {
-           sh "ls nginx" 
-            sh "cd ./templates && sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
+           dir("templates") { 
+//             sh "cd ./templates && sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
+           sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
 //              sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
             sh "git commit -am 'Publish new version' && git push || echo 'no changes'"
            // Do a ls -lart to view all the files are cloned. It will be clonned. This is just for you to be sure about it.

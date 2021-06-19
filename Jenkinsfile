@@ -46,7 +46,9 @@ pipeline {
                     }
                 }
             }
-        }        
+        }
+    }
+}
     
 //     stage('Deploy E2E') {
 //       environment {

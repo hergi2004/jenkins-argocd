@@ -14,26 +14,39 @@
       
 //         }
 //       }
+
 pipeline {
-agent { node { label 'master' } }
-      stages{
-        stage('Push Docker Image to Docker Registry') {
-              steps {
-        container('docker'){
-            withCredentials([[$class: 'UsernamePasswordMultiBinding',
-            credentialsId: env.dockerhub,
-            usernameVariable: 'USERNAME',
-            passwordVariable: 'PASSWORD']]) {
-                docker.withRegistry(env.DOCEKR_REGISTRY, env.DOCKER_CREDENTIALS_ID) {
-                    sh("docker push ${app1_image_tag}")
-                    sh("docker push ${app2_image_tag}")
+    agent any
+    environment {
+//         PROJECT_ID = 'PROJECT-ID'
+//         CLUSTER_NAME = 'CLUSTER-NAME'
+//         LOCATION = 'CLUSTER-LOCATION'
+//         CREDENTIALS_ID = 'gke'
+          
+    }
+    stages {
+        stage("Checkout code") {
+            steps {
+                checkout scm
+            }
+        }
+        stage("Build image") {
+            steps {
+                script {
+                    myapp = docker.build("hergi2004/argocd-demo:${env.GIT_COMMIT} ")
                 }
             }
         }
-        }
-      }
-      }
-}
+        stage("Push image") {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                            myapp.push("latest")
+                            myapp.push("${env.BUILD_ID}")
+                    }
+                }
+            }
+        }        
     
 //     stage('Deploy E2E') {
 //       environment {

@@ -48,7 +48,6 @@ pipeline {
                 }
             }
         }
-    }
     
     stage('Deploy E2E') {
       environment {
@@ -70,6 +69,7 @@ pipeline {
         }
       }
     }
+    }        
 }
 //     stage('Deploy to Prod') {
 //       steps {

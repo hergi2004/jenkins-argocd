@@ -68,18 +68,13 @@ pipeline {
 //           }
 //         }
 
-        script {
-           // The below will clone your repo and will be checked out to master branch by default.
-           git credentialsId: 'git', url: 'git clone https://github.com/hergi2004/argocd-demo-deploy.git'
-           // Do a ls -lart to view all the files are cloned. It will be clonned. This is just for you to be sure about it.
-           sh "ls -argocd-demo-deploy ./*" 
-           // List all branches in your repo. 
-           sh "git branch -a"
-           // Checkout to a specific branch in your repo.
-           sh "git checkout branchname"
-      }
-    }
-    }        
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/branchname']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-user-github', url: 'https://github.com/aakashsehgal/FMU.git']]])
+                sh "ls -lart ./*"
+            }
+        }   
+    }       
 }
 }
 //     stage('Deploy to Prod') {

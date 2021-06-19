@@ -54,7 +54,7 @@ pipeline {
 //              sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
 //              sh "git config --global --edit"
 //              sh "git commit --amend --reset-author"
-               sh "git commit -am 'Publish new version' && git push https://${GIT_CREDS_USR}:${GIT_CREDS_PSW}@github.com/${GIT_CREDS_USR}/argocd-demo-deploy.git  || echo 'no changes'"
+               sh "git commit -am 'Publish new version' && git push https://${GIT_CREDS_USR}:${GIT_CREDS_PSW}@github.com/${GIT_CREDS_USR}/nginx.git  || echo 'no changes'"
 
 //             sh "git commit -am 'Publish new version' && git push --set-upstream origin master || echo 'no changes'"
 //                sh "git commit -am 'Publish new version' --amend --author="hergi2004 hergi004@gmail.com" && git push --set-upstream origin master || echo 'no changes'"

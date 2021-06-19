@@ -14,14 +14,11 @@
       
 //         }
 //       }
-agent {
-    node {
-        label 'node1'
-        customWorkspace '/some/other/path'
-
-    }
-}
+pipeline {
+agent { node { label 'master' } }
+      stages{
         stage('Push Docker Image to Docker Registry') {
+              steps {
         container('docker'){
             withCredentials([[$class: 'UsernamePasswordMultiBinding',
             credentialsId: env.dockerhub,
@@ -34,7 +31,9 @@ agent {
             }
         }
         }
-
+      }
+      }
+}
     
 //     stage('Deploy E2E') {
 //       environment {

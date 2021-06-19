@@ -51,7 +51,7 @@ pipeline {
     
     stage('Deploy E2E') {
       environment {
-        GIT_CREDS = credentials('gat')
+        GIT_CREDS = credentials('git')
       }
       steps {
 //         container('tools') {
@@ -72,7 +72,7 @@ pipeline {
 //                 sh "ls -lart ./*"
                script {
            // The below will clone your repo and will be checked out to master branch by default.
-           git credentialsId: 'jenkins-user-github', url: 'https://github.com/aakashsehgal/FMU.git'
+           git credentialsId: 'git', url: 'https://github.com/hergi2004/argocd-demo-deploy.git'
            // Do a ls -lart to view all the files are cloned. It will be clonned. This is just for you to be sure about it.
            sh "ls -lart ./*" 
            // List all branches in your repo. 

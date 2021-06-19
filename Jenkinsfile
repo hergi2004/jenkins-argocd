@@ -33,7 +33,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("hergi2004/argocd-demo:${env.GIT_COMMIT} .")
+                    myapp = docker.build("hergi2004/argocd-demo:${env.GIT_COMMIT}")
                 }
             }
         }

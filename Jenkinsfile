@@ -52,7 +52,7 @@ pipeline {
             sh "sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
 //            sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
 //              sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
-            sh "git commit -am 'Publish new version' && git push || echo 'no changes'"
+            sh "git commit -am 'Publish new version' && git push --set-upstream origin master || echo 'no changes'"
            // Do a ls -lart to view all the files are cloned. It will be clonned. This is just for you to be sure about it.
 //            // List all branches in your repo. 
 //            sh "git branch -a"

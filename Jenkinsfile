@@ -56,7 +56,8 @@ pipeline {
                  sh "git config --global user.name "hergi2004""
                    sh "git config --global user.hergi2004@gmail.com"
 //              sh "git commit --amend --reset-author"
-            sh "git commit -am 'Publish new version' && git push --set-upstream origin master || echo 'no changes'"
+//             sh "git commit -am 'Publish new version' && git push --set-upstream origin master || echo 'no changes'"
+               sh "git commit -am 'Publish new version' --amend --author="hergi2004 hergi004@gmail.com" && git push --set-upstream origin master || echo 'no changes'"
            // Do a ls -lart to view all the files are cloned. It will be clonned. This is just for you to be sure about it.
 //            // List all branches in your repo. 
 //            sh "git branch -a"

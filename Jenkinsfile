@@ -53,6 +53,8 @@ pipeline {
 //            sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
 //              sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
              sh "git config --global --edit"
+                 sh "git config --global user.name "hergi2004""
+                   sh "git config --global user.hergi2004@gmail.com"
 //              sh "git commit --amend --reset-author"
             sh "git commit -am 'Publish new version' && git push --set-upstream origin master || echo 'no changes'"
            // Do a ls -lart to view all the files are cloned. It will be clonned. This is just for you to be sure about it.

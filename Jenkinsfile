@@ -52,7 +52,7 @@ pipeline {
             sh "sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
 //            sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
 //              sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
-             sh "git config --global --edit"
+//              sh "git config --global --edit"
                  sh "git config --global user.name "hergi2004""
                    sh "git config --global user.hergi2004@gmail.com"
 //              sh "git commit --amend --reset-author"

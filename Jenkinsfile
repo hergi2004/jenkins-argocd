@@ -74,7 +74,7 @@ pipeline {
            // The below will clone your repo and will be checked out to master branch by default.
            git credentialsId: 'git', url: 'https://github.com/hergi2004/nginx.git'
            dir("nginx") {
-            sh "cd ./templates && sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml""
+            sh "cd ./templates && sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml""
             sh "git commit -am 'Publish new version' && git push || echo 'no changes'"
            // Do a ls -lart to view all the files are cloned. It will be clonned. This is just for you to be sure about it.
 //            sh "ls -lart ./*" 

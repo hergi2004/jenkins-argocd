@@ -59,14 +59,14 @@ pipeline {
 //                 sshagent(['git-credentials-id']) {
 //                   sh "git push origin master"
 //                 }
-//                sshagent(['8d756129d-8f6d-4a91-b129-aa8d9dfc0e19']) {
-//     sh("git push --tags")
+               sshagent(['ssh']) {
+                sh("git push origin master")
+            }
+//         withCredentials([sshUserPrivateKey(credentialsId: CODECOMMIT_CREDENTIALS_ID, keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
+//         withEnv(["GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no -o User=${SSH_USER} -i ${SSH_KEY}"]) {
+//         sh 'git push origin git@github.com:hergi2004/nginx.git:master'
+//     }
 // }
-        withCredentials([sshUserPrivateKey(credentialsId: CODECOMMIT_CREDENTIALS_ID, keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
-        withEnv(["GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no -o User=${SSH_USER} -i ${SSH_KEY}"]) {
-        sh 'git push origin git@github.com:hergi2004/nginx.git:master'
-    }
-}
 }
 //             sh "git commit -am 'Publish new version' && git push --set-upstream origin master || echo 'no changes'"
 //                sh "git commit -am 'Publish new version' --amend --author="hergi2004 hergi004@gmail.com" && git push --set-upstream origin master || echo 'no changes'"

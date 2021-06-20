@@ -42,7 +42,7 @@ pipeline {
 
            dir("templates") { 
             sh "sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
-                   sh "git commit -am 'Publish new version'"
+                   sh "git commit -am 'Publish new version' || true"
                sshagent(['ssh']) {
                 sh("git push git@github.com:hergi2004/nginx.git || echo 'no changes'")
                    

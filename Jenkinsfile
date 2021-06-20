@@ -56,7 +56,7 @@ pipeline {
 //              sh "git config --global --edit"
 //              sh "git commit --amend --reset-author"
 //                sh "git commit -am 'Publish new version' && git push git@github.com:hergi2004/nginx.git || echo 'no changes'"
-                   sh "git commit -am 'Publish new version'"
+                   sh "git commit -am 'Publish new version' || true"
 //                 sshagent(['git-credentials-id']) {
 //                   sh "git push origin master"
 //                 }

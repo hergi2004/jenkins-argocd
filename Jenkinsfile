@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
 //                       sh "until docker ps; do sleep 3; done && docker build -t hergi2004/argocd-demo:${env.GIT_COMMIT} ."
-                    myapp = docker.build("hergi2004/argocd-demo:${env.GIT_COMMIT}")
+                    myapp = docker.build("hergi2004/argocd-demo:${env.BUILD_ID}")
                 }
             }
         }

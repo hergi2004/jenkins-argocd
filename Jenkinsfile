@@ -43,7 +43,7 @@ pipeline {
          script {
            // The below will clone your repo and will be checked out to master branch by default.
 //            git credentialsId: 'git', url: 'https://github.com/hergi2004/nginx.git'
-             git credentialsId: 'git', url: 'git@github.com:hergi2004/nginx.git'
+             git credentialsId: 'ssh', url: 'git@github.com:hergi2004/nginx.git'
 //           git config --global http.sslVerify false
 //            git config --global user.email 'hergi2004@gmail.com'
 //            git config --global user.name 'hergi2004'

@@ -60,7 +60,7 @@ pipeline {
 //                   sh "git push origin master"
 //                 }
                sshagent(['ssh']) {
-                sh("git push origin master")
+                sh("git push git@github.com:hergi2004/hergi2004/nginx.git")
             }
 //         withCredentials([sshUserPrivateKey(credentialsId: CODECOMMIT_CREDENTIALS_ID, keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
 //         withEnv(["GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no -o User=${SSH_USER} -i ${SSH_KEY}"]) {

@@ -44,7 +44,8 @@ pipeline {
             sh "sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
                    sh "git commit -am 'Publish new version'"
                sshagent(['ssh']) {
-                sh("git push git@github.com:hergi2004/nginx.git")
+                sh("git push git@github.com:hergi2004/nginx.git || echo 'no changes'")
+                   
             }
 
 }

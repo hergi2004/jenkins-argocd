@@ -1,3 +1,4 @@
+//Jenkins file for jenkins server on amazon ec2 instance to work with Rancher CD
 pipeline {
     agent any
     environment {
@@ -43,12 +44,13 @@ pipeline {
          script {
            // The below will clone your repo and will be checked out to master branch by default.
 //            git credentialsId: 'git', url: 'https://github.com/hergi2004/nginx.git'
+             // Git clone helm chart repo
              git credentialsId: 'ssh', url: 'git@github.com:hergi2004/nginx.git'
 //           git config --global http.sslVerify false
 //            git config --global user.email 'hergi2004@gmail.com'
 //            git config --global user.name 'hergi2004'
 //               git config --global credential.username {GIT_USERNAME}
-
+            // Make image version changes on deployment
            dir("templates") { 
             sh "sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
 //            sed -i 's/argocd-demo:latest/argocd-demo:${env.BUILD_ID}/g' deployment.yaml"
@@ -60,6 +62,7 @@ pipeline {
 //                 sshagent(['git-credentials-id']) {
 //                   sh "git push origin master"
 //                 }
+               // push latest Helm chart to trigger deployment
                sshagent(['ssh']) {
                 sh("git push git@github.com:hergi2004/nginx.git")
             }
